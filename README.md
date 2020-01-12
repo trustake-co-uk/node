@@ -1,0 +1,1 @@
+# coldstake.co.in - full node as a service
