@@ -55,7 +55,6 @@ if (empty($_POST["DelegatorAddress"])) {
 	} else {
 		// Log the expiry date to DB
 		$db = new SQLite3('/data/coldstake.db');
-		$db = new MyDB();
 		if (!$db) {
 			die($db->lastErrorMsg());
 		}
@@ -65,12 +64,13 @@ if (empty($_POST["DelegatorAddress"])) {
 //EOF;
 //		$result = $db->exec($sql);
 
-		$sql = $db->prepare('INSERT INTO WHITELIST (DelegatorAddress,ExpiryDate,ColdStakingAddress,InvoiceID,Price,Whitelisted) VALUES (:da, :exp, :add , :inv, :pr, 1 );');
-		$sql->bindValue(':da', $DelegatoreAddress, SQLITE3_TEXT);
+		$sql = $db->prepare('INSERT INTO WHITELIST (DelegatorAddress,ExpiryDate,ColdStakingAddress,InvoiceID,Price,Whitelisted) VALUES (:da, :exp, :add , :inv, :pr, :wh );');
+		$sql->bindValue(':da', $DelegatorAddress, SQLITE3_TEXT);
 		$sql->bindValue(':exp', $ExpiryDate, SQLITE3_TEXT);
 		$sql->bindValue(':add', $Address, SQLITE3_TEXT);
 		$sql->bindValue(':inv', $InvoiceID, SQLITE3_TEXT);
-		$sql->bindValue(':pr', $Price, SQLITE3_TEXT);
+		$sql->bindValue(':pr', $Price, SQLITE3_FLOAT);
+		$sql->bindValue(':wh', 1, SQLITE3_INTEGER);
 		$dbselect = $sql->execute();
 	
 		$db->close();

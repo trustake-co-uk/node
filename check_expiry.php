@@ -8,7 +8,6 @@ if (isset($_POST['address'])) {
 
 	// Open DB
 	$db = new SQLite3('/data/coldstake.db');
-	$db = new MyDB();
 	if(!$db){ die ($db->lastErrorMsg()); }
 
 	//Search for the owner address.
