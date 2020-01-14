@@ -2,6 +2,12 @@
 session_start();
 include('include/node-check.php');
 
+class MyDB extends SQLite3 {
+	function __construct() {
+	   $this->open('/data/coldstake.db');
+	}
+ }
+
 // Check session is live
 
 if ($_SESSION['Session'] != 'Open') {
@@ -54,7 +60,8 @@ if (empty($_POST["DelegatorAddress"])) {
 		exit(' Something went wrong checking the node! - please try again in a new tab it could just be a timeout.');
 	} else {
 		// Log the expiry date to DB
-		$db = new SQLite3('/data/coldstake.db');
+		//$db = new SQLite3('/data/coldstake.db');
+		$db = new MyDB();
 		if (!$db) {
 			die($db->lastErrorMsg());
 		}

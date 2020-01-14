@@ -2,9 +2,16 @@
 session_start();
 include('include/node-check.php');
 
+class MyDB extends SQLite3 {
+	function __construct() {
+	   $this->open('/data/coldstake.db');
+	}
+ }
+
 if (isset($_POST['address'])) {
 	// Open DB
-	$db = new SQLite3('/data/coldstake.db');
+	//	$db = new SQLite3('/data/coldstake.db');
+	$db = new MyDB();
 	if(!$db){ die ($db->lastErrorMsg()); }
 	$address = $_POST['address'];
 
