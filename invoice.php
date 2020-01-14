@@ -22,19 +22,19 @@ switch ($_SESSION['Plan']) {
       $_SESSION['Price']='2';
       $_SESSION['Plan_Desc']='Bronze';
       $d=strtotime("+1 month");
-      $_SESSION['Expiry']=date("Y-m-d",$d) ." ". date("H:i:s", $d) .".000Z";
+      $_SESSION['Expiry']=date("Y-m-d",$d) ." ". date("H:i:s", $d) .".000";
 		break;
     case "2":
       $_SESSION['Price']='9';
       $_SESSION['Plan_Desc']='Silver';
       $d=strtotime("+6 months");
-      $_SESSION['Expiry']=date("Y-m-d",$d) ." ". date("H:i:s", $d) .".000Z";
+      $_SESSION['Expiry']=date("Y-m-d",$d) ." ". date("H:i:s", $d) .".000";
 		break;
 	case "3":
       $_SESSION['Price']='12';
       $_SESSION['Plan_Desc']='Gold';
       $d=strtotime("+1 year");
-      $_SESSION['Expiry']=date("Y-m-d",$d) ." ". date("H:i:s", $d) .".000Z";
+      $_SESSION['Expiry']=date("Y-m-d",$d) ." ". date("H:i:s", $d) .".000";
 		break;
 	default:
 		break;
@@ -42,7 +42,7 @@ switch ($_SESSION['Plan']) {
 
 $wallet = new phpFunctions_Wallet();
 
-if ('1' == '0') { // THIS LINE IS JUST NEEDED FOR LOCAL TESTING
+//if ('1' == '0') { // THIS LINE IS JUST NEEDED FOR LOCAL TESTING
   // Deal with the bots first
   if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['recaptcha_response'])) {
     // Build POST request:
@@ -72,7 +72,7 @@ if ('1' == '0') { // THIS LINE IS JUST NEEDED FOR LOCAL TESTING
       die(" Recaptcha thinks you're a bot! - please try again in a new tab.");
     }
   }
-}
+//}
 
 // Grab a new staking address 
 $address = $wallet->rpc('getnewstakingaddress');
