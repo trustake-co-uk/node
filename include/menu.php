@@ -14,7 +14,7 @@
 					</ul>
 					<ul>
 						<li><a href="" style='color:green'> HOW-TO GUIDES</a></li>
-						<li><a href="how-to.php" target="_blank">Staking Guide</a></li>
+						<li><a href="how-to.php">Staking Guide</a></li>
 						<li><a href="check_expiry.php">Check my expiry date</a></li>
 					</ul>
 			    </div>
