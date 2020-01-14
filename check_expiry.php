@@ -11,11 +11,6 @@ if (isset($_POST['address'])) {
 	if(!$db){ die ($db->lastErrorMsg()); }
 
 	//Search for the owner address.
-	//$sql = <<<EOF
-	//SELECT * from WHITELIST where DelegatorAddress = '$address';
-	//EOF;
-	//$dbselect = $db->query($sql);
-	
 	$sql = $db->prepare('SELECT * FROM WHITELIST WHERE DelegatorAddress=:da');
 	$sql->bindValue(':da', $address, SQLITE3_TEXT);
 	$dbselect = $sql->execute();
@@ -23,7 +18,7 @@ if (isset($_POST['address'])) {
 	while ($row = $dbselect->fetchArray(SQLITE3_ASSOC) ) {
 		$expires = $row['ExpiryDate'];
 		$whitelisted = $row['Whitelisted']; 
-		if ( $row['Whitelisted'] = 1 ) {
+		if ( $row['Whitelisted'] == 1 ) {
 			$whiteliststatus = "Whitelisted"; 
 			} else {
 			$whiteliststatus = "Expired";
@@ -58,7 +53,7 @@ if (isset($_POST['address'])) {
 						<tr>
 							<td><?php echo $address; ?></td>
 							<td><?php echo $expires; ?></td>
-							<td><?php echo $whiteliststatus .'(' . $whiteliststatus .')'; ?></td>
+							<td><?php echo $whiteliststatus .'(' . $whitelisted .')'; ?></td>
 						</tr>
 					</tbody>
 					<tfoot>
