@@ -2,25 +2,25 @@
 session_start();
 include('include/node-check.php');
 
-class MyDB extends SQLite3 {
-	function __construct() {
-	   $this->open('/data/coldstake.db');
-	}
- }
-
 if (isset($_POST['address'])) {
-	// Open DB
-	//	$db = new SQLite3('/data/coldstake.db');
-	$db = new MyDB();
-	if(!$db){ die ($db->lastErrorMsg()); }
+
 	$address = $_POST['address'];
 
-	//Search for the owner address.
-	$sql = <<<EOF
-	SELECT * from WHITELIST where DelegatorAddress = '$address';
-	EOF;
+	// Open DB
+	$db = new SQLite3('/data/coldstake.db');
+	$db = new MyDB();
+	if(!$db){ die ($db->lastErrorMsg()); }
 
-	$dbselect = $db->query($sql);
+	//Search for the owner address.
+	//$sql = <<<EOF
+	//SELECT * from WHITELIST where DelegatorAddress = '$address';
+	//EOF;
+	//$dbselect = $db->query($sql);
+	
+	$sql = $db->prepare('SELECT * FROM WHITELIST WHERE DelegatorAddress=:da');
+	$sql->bindValue(':da', $address, SQLITE3_TEXT);
+	$dbselect = $sql->execute();
+
 	while ($row = $dbselect->fetchArray(SQLITE3_ASSOC) ) {
 		$expires = $row['ExpiryDate'];
 		if ( $row['Whitelisted'] = 1 ) {$whiteliststatus = "Enabled"; } else {$whiteliststatus = "Expired";};
