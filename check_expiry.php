@@ -22,7 +22,12 @@ if (isset($_POST['address'])) {
 
 	while ($row = $dbselect->fetchArray(SQLITE3_ASSOC) ) {
 		$expires = $row['ExpiryDate'];
-		if ( $row['Whitelisted'] = 1 ) {$whiteliststatus = "Enabled"; } else {$whiteliststatus = "Expired";};
+		$whitelisted = $row['Whitelisted']; 
+		if ( $row['Whitelisted'] = 1 ) {
+			$whiteliststatus = "Whitelisted"; 
+			} else {
+			$whiteliststatus = "Expired";
+		};
 	}
 	$db->close();
 }
@@ -46,14 +51,14 @@ if (isset($_POST['address'])) {
 						<tr>
 							<th>Address</th>
 							<th>Expiry Date</th>
-							<th>Whitelisted</th>
+							<th>Status</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
 							<td><?php echo $address; ?></td>
 							<td><?php echo $expires; ?></td>
-							<td><?php echo $whiteliststatus; ?></td>
+							<td><?php echo $whiteliststatus .'(' . $whiteliststatus .')'; ?></td>
 						</tr>
 					</tbody>
 					<tfoot>
