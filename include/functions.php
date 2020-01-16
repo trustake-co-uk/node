@@ -47,7 +47,7 @@ class phpFunctions_Wallet
         $response = curl_exec($ch);
         $response = json_decode($response, true);
 
-        if (is_array($response)) {
+        if (isset($response)) {
             $result=$response['result'];
             $error=$response['error'];
         } else {
