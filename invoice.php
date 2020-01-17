@@ -43,6 +43,7 @@ switch ($_SESSION['Plan']) {
 $wallet = new phpFunctions_Wallet();
 
 //if ('1' == '0') { // THIS LINE IS JUST NEEDED FOR LOCAL TESTING
+if ($payment != '1' || $_SESSION['Plan'] = '0') {
   // Deal with the bots first
   if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['recaptcha_response'])) {
     // Build POST request:
@@ -73,7 +74,7 @@ $wallet = new phpFunctions_Wallet();
       die(" Recaptcha thinks you're a bot! - please try again in a new tab.");
     }
   }
-//}
+}
 
 // Grab a new staking address 
 $address = $wallet->rpc('getnewstakingaddress');

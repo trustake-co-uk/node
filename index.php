@@ -50,6 +50,7 @@ $_SESSION['Session'] = 'Open';
 			<form method="post" action="invoice.php" name="bronze" id="bronze">
 				<input type="hidden" name="recaptcha_response" id="recaptchaResponse1">
 				<input type="hidden" name="Plan" value="1">
+				<input type="hidden" name="action" value="payment">
 				<input type="submit" class="button primary small fitn" value="Select Plan" />
 			</form>
 			</div>
@@ -81,6 +82,7 @@ $_SESSION['Session'] = 'Open';
 				<form method="post" action="invoice.php" name="silver" id="silver">
 					<input type="hidden" name="recaptcha_response" id="recaptchaResponse2">
 					<input type="hidden" name="Plan" value="2">
+					<input type="hidden" name="action" value="payment">
 					<input type="submit" class="button primary small fitn" value="Select Plan" />
 				</form>
 			</div>
@@ -114,6 +116,7 @@ $_SESSION['Session'] = 'Open';
 		<form method="post" action="invoice.php" name="gold" id="gold">
 			<input type="hidden" name="recaptcha_response" id="recaptchaResponse3">
 			<input type="hidden" name="Plan" value="3">
+			<input type="hidden" name="action" value="payment">
 			<input type="submit" class="button primary small fitn" value="Select Plan" />
 		</form>
 	</div>
@@ -147,6 +150,7 @@ $_SESSION['Session'] = 'Open';
 					<form method="post" action="invoice.php" name="free" id="free">
 						<input type="hidden" name="recaptcha_response" id="recaptchaResponse4">
 						<input type="hidden" name="Plan" value="0">
+						<input type="hidden" name="action" value="payment">
 						<input type="submit" class="button primary small fitn" value="Select Plan" />
 					</form>
 				</div>
