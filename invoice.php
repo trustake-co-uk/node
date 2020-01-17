@@ -49,6 +49,7 @@ $wallet = new phpFunctions_Wallet();
     $recaptcha_url = 'https://www.google.com/recaptcha/api/siteverify';
     $recaptcha_response = $_POST['recaptcha_response'];
     $remoteip = $_SERVER["REMOTE_ADDR"];
+    $action = $_POST['action'];
 
     // Curl Request
     $curl = curl_init();
@@ -65,7 +66,7 @@ $wallet = new phpFunctions_Wallet();
 
     // Parse data
     $recaptcha = json_decode($curlData, true);
-    if ($recaptcha["success"]) {
+    if ($recaptcha["success"] == '1' && $recaptcha["action"] == $action && $recaptcha["score"] >= 0.5) {
       $verified = true;
     } else {
       $verified = false;
