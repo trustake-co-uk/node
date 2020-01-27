@@ -45,10 +45,10 @@ $wallet = new phpFunctions_Wallet();
 //if ('1' == '0') { // THIS LINE IS JUST NEEDED FOR LOCAL TESTING
 if ($payment != '1' || $_SESSION['Plan'] = '0') {
   // Deal with the bots first
-  if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['recaptcha_response'])) {
+  if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['g-recaptcha_response'])) {
     // Build POST request:
     $recaptcha_url = 'https://www.google.com/recaptcha/api/siteverify';
-    $recaptcha_response = $_POST['recaptcha_response'];
+    $recaptcha_response = $_POST['g-recaptcha_response'];
     $remoteip = $_SERVER["REMOTE_ADDR"];
     $action = $_POST['action'];
 
