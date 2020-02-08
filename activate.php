@@ -33,7 +33,7 @@ if ($payment == '1' && $_SESSION['Plan'] != '0') {
 }
 
 // Whitelist Delegator address //
-// Capture delegator address & Log delegator address and expiry date to a file  //
+// Capture delegator address & Log delegator address and expiry date to DB  //
 
 $displaymessage = '';
 
@@ -58,11 +58,6 @@ if (empty($_POST["DelegatorAddress"])) {
 		if (!$db) {
 			die($db->lastErrorMsg());
 		}
-//		$sql = <<<EOF
-//INSERT INTO WHITELIST (DelegatorAddress,ExpiryDate,ColdStakingAddress,InvoiceID,Price,Whitelisted) 
-//VALUES ('$DelegatorAddress', '$ExpiryDate', '$Address' , '$InvoiceID', $Price, 1 );
-//EOF;
-//		$result = $db->exec($sql);
 
 		$sql = $db->prepare('INSERT INTO WHITELIST (DelegatorAddress,ExpiryDate,ColdStakingAddress,InvoiceID,Price,Whitelisted) VALUES (:da, :exp, :add , :inv, :pr, :wh );');
 		$sql->bindValue(':da', $DelegatorAddress, SQLITE3_TEXT);
