@@ -85,7 +85,7 @@ if ($address == '' || empty($address)) {
 }
 
 // Bypass payment for free trial otherwise take payment
-if ($_SESSION['Plan'] == '0' || $payment == '0') {
+if ($_SESSION['Plan'] == '0' || $payment != '1') {
   header('Location:' . 'activate.php'); 
 } else {
 
